@@ -38,18 +38,26 @@ class _NewsPageState extends State<NewsPage> {
       ),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: defaultPadding),
-        child: _isLoading
-            ? const Center(
-                child: CircularProgressIndicator(),
-              )
-            : ListView.separated(
-                itemCount: 6,
-                itemBuilder: (context, index) => NewsCard(
-                  image: "assets/images/Image_$index.png",
-                ),
-                separatorBuilder: (context, index) =>
-                    const SizedBox(height: defaultPadding),
-              ),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            // const SizedBox(height: 32), // for better visualization
+            _isLoading
+                ? const Center(
+                    child: CircularProgressIndicator(),
+                  )
+                : Expanded(
+                    child: ListView.separated(
+                      itemCount: 6,
+                      itemBuilder: (context, index) => NewsCard(
+                        image: "assets/images/Image_$index.png",
+                      ),
+                      separatorBuilder: (context, index) =>
+                          const SizedBox(height: defaultPadding),
+                    ),
+                  ),
+          ],
+        ),
       ),
     );
   }
